@@ -1,16 +1,18 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+using namespace sf;
 
 int main() {
-	// Создание окна
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "Street Pixel");
+	setlocale(LC_ALL, "RU");
+	// РЎРѕР·РґР°РЅРёРµ РѕРєРЅР°
+	RenderWindow window(VideoMode(1280, 720), "Street Pixel");
 
-	// Рендеринг
+	// Р РµРЅРґРµСЂРёРЅРі
 	while (window.isOpen()) {
-		sf::Event event;
+		Event event;
 
 		while (window.pollEvent(event)) {
-			if (event.type != sf::Event::Closed) { continue; }
+			if (event.type != Event::Closed) { continue; }
 			window.close();
 		}
 
