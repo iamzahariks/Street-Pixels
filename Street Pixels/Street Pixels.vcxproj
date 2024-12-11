@@ -131,9 +131,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">P:\CodeProjects\BSTU\Street Pixels\Street Pixels\SFML-2.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="modules\FramesController.cpp" />
+    <ClCompile Include="modules\frames\game\Game.cpp" />
+    <ClCompile Include="modules\frames\menu\Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -149,11 +152,16 @@
     <None Include="sfml-window-d-2.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="font\EpilepsySans.ttf" />
-    <Font Include="font\EpilepsySansBold.ttf" />
+    <Font Include="fonts\EpilepsySans.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="imgs\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="modules\frames\game\GameHeader.h" />
+    <ClInclude Include="modules\frames\game\structs\Car.h" />
+    <ClInclude Include="modules\frames\menu\MenuHeader.h" />
+    <ClInclude Include="modules\HeaderFC.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

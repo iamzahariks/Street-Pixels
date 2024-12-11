@@ -1,21 +1,29 @@
-#include <iostream>
 #include <SFML/Graphics.hpp>
+#include "modules/HeaderFC.h"
 
 int main() {
-	// Создание окна
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "Street Pixel");
+	// Создание окна игры
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "Street Pixels", sf::Style::Default);
+	OpenFrame("menu");
 
-	// Рендеринг
+	// Счётчики FPS
+	window.setFramerateLimit(144);
+	sf::Clock fpsClock;
+	int fps = 0;
+
+	// Рендер
 	while (window.isOpen()) {
 		sf::Event event;
-
 		while (window.pollEvent(event)) {
-			if (event.type != sf::Event::Closed) { continue; }
-			window.close();
+			if (event.type == sf::Event::Closed) { window.close(); }
 		}
 
 		window.clear();
+		Render(window, fps);
 		window.display();
+
+		fps = 1000 / fpsClock.getElapsedTime().asMilliseconds();
+		fpsClock.restart();
 	}
 
 	return 0;
