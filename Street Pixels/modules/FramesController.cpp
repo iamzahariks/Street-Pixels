@@ -1,6 +1,8 @@
 #include "HeaderFC.h"
+#include "other/keyboard/KeyboardHeader.h"
 #include "frames/menu/MenuHeader.h"
 #include "frames/game/GameHeader.h"
+#include "frames/about/AboutHeader.h"
 
 // Обновления окон при открытии нового окна
 void UpdateFrames(std::string frameName) {
@@ -20,12 +22,18 @@ void OpenFrame(std::string frameName) {
 
 // Функция рендера окна
 void Render(sf::RenderWindow &window, int fps) {
-	for (auto& gettedFrame : GetFrames()) {
-		if ( (! gettedFrame.second->IsEnabled()) ) { continue; }
-		gettedFrame.second->Render(window, fps);
-		break;
-	}
+	std::string openedFrame = GetOpenedFrame();
+
+	UpdateKeyboard(window, openedFrame);
+	GetFrames()[openedFrame]->Render(window, fps);
 };
+
+// Получить открытое на данный момент окно
+std::string GetOpenedFrame() {
+	for (auto& gettedFrame : GetFrames()) {
+		if ((gettedFrame.second->IsEnabled())) { return gettedFrame.second->frameName; }
+	}
+}
 
 struct FramesStorage {
 	bool init = false;
@@ -39,6 +47,7 @@ std::map <std::string, Frame*> GetFrames() {
 		storage.init = true;
 		storage.frames["game"] = GetGame();
 		storage.frames["menu"] = GetMenu();
+		storage.frames["about"] = GetAbout();
 	}
 
 	return storage.frames;

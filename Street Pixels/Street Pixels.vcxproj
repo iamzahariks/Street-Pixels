@@ -135,8 +135,13 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">P:\CodeProjects\BSTU\Street Pixels\Street Pixels\SFML-2.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="modules\FramesController.cpp" />
+    <ClCompile Include="modules\frames\about\About.cpp" />
+    <ClCompile Include="modules\frames\about\objsContainer\AboutContainer.cpp" />
     <ClCompile Include="modules\frames\game\Game.cpp" />
+    <ClCompile Include="modules\frames\game\objsContainer\GameContainer.cpp" />
+    <ClCompile Include="modules\frames\menu\objsContainer\MenuContainer.cpp" />
     <ClCompile Include="modules\frames\menu\Menu.cpp" />
+    <ClCompile Include="modules\other\keyboard\Keyboard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -150,6 +155,7 @@
     <None Include="sfml-system-d-2.dll" />
     <None Include="sfml-window-2.dll" />
     <None Include="sfml-window-d-2.dll" />
+    <None Include="sounds\meow.wav" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\EpilepsySans.ttf" />
@@ -158,10 +164,15 @@
     <Image Include="imgs\background.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="modules\frames\about\AboutHeader.h" />
+    <ClInclude Include="modules\frames\about\objsContainer\AC_Header.h" />
     <ClInclude Include="modules\frames\game\GameHeader.h" />
+    <ClInclude Include="modules\frames\game\objsContainer\GC_Header.h" />
     <ClInclude Include="modules\frames\game\structs\Car.h" />
+    <ClInclude Include="modules\frames\menu\objsContainer\MC_Header.h" />
     <ClInclude Include="modules\frames\menu\MenuHeader.h" />
     <ClInclude Include="modules\HeaderFC.h" />
+    <ClInclude Include="modules\other\keyboard\KeyboardHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

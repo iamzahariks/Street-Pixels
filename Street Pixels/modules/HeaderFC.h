@@ -6,6 +6,7 @@
 void UpdateFrames(std::string);
 void OpenFrame(std::string);
 void Render(sf::RenderWindow &window, int);
+std::string GetOpenedFrame();
 
 class Frame {
 private:
@@ -19,14 +20,16 @@ public:
 		UpdateFrames(frameName);
 	}
 	
-	// Закрыть фрейм, самостоятельно лучше не использовать данный метод.
+	// Закрыть фрейм(самостоятельно лучше не использовать данный метод)
 	void Close() {
 		isEnabled = false;
+		Closing();
 	}
 
 	// !!! Функция рендера, которую необходимо заполнить в каждом отдельном фрейме
 	// самостоятельно !!!
 	void (*Render)(sf::RenderWindow&, int fps);
+	void (*Closing)();
 
 	// Открыт ли фрейм
 	bool IsEnabled() {
