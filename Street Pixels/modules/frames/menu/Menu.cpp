@@ -35,7 +35,7 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 // Меню закрывается
 void Menu_Closing() {
 	MenuContainer* container = GetContainer();
-	container->choice = 0;
+	//container->choice = 0;
 }
 
 void Menu_ChoiceAdd(sf::RenderWindow &window) {
@@ -75,7 +75,11 @@ Frame* GetMenu() {
 		_createdMenu.Closing = Menu_Closing;
 
 		KeyPressConnect(sf::Keyboard::W, "menu", Menu_ChoiceAdd);
+		KeyPressConnect(sf::Keyboard::Up, "menu", Menu_ChoiceAdd);
+
 		KeyPressConnect(sf::Keyboard::S, "menu", Menu_ChoiceRemove);
+		KeyPressConnect(sf::Keyboard::Down, "menu", Menu_ChoiceRemove);
+
 		KeyPressConnect(sf::Keyboard::Enter, "menu", Menu_Enter);
 	}
 
