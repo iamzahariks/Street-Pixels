@@ -24,7 +24,7 @@ MenuContainer* GetContainer() {
 			_myContainer.buttons[i].setFillColor(sf::Color::White);
 			_myContainer.buttons[i].setCharacterSize(64);
 			_myContainer.buttons[i].setString(_myContainer.buttonTexts[i]);
-			_myContainer.buttons[i].setPosition(sf::Vector2f(640, 250 + 120 * i));
+			_myContainer.buttons[i].setPosition(sf::Vector2f(640.0, 250.0 + 120.0 * i));
 			_myContainer.buttons[i].setFont(_myContainer.font);
 		}
 	}

@@ -33,6 +33,8 @@ std::string GetOpenedFrame() {
 	for (auto& gettedFrame : GetFrames()) {
 		if ((gettedFrame.second->IsEnabled())) { return gettedFrame.second->frameName; }
 	}
+
+	return GetFrames()["menu"]->frameName;
 }
 
 struct FramesStorage {

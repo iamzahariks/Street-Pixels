@@ -24,7 +24,7 @@ AboutContainer* GetContainer() {
 			_myContainer.devsList[i].setFillColor(sf::Color::White);
 			_myContainer.devsList[i].setCharacterSize(48);
 			_myContainer.devsList[i].setString(_myContainer.devNames[i]);
-			_myContainer.devsList[i].setPosition(sf::Vector2f(1280 / 2, 150 + i * 100));
+			_myContainer.devsList[i].setPosition(sf::Vector2f(1280.0 / 2.0, 150.0 + i * 100.0));
 			_myContainer.devsList[i].setFont(_myContainer.font);
 		}
 

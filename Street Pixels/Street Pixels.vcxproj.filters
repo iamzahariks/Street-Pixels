@@ -42,6 +42,9 @@
     <ClCompile Include="modules\other\keyboard\Keyboard.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="modules\other\mouse\Mouse.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -91,6 +94,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="modules\other\keyboard\KeyboardHeader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="modules\other\mouse\MouseHeader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

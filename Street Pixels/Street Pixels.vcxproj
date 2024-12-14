@@ -142,6 +142,7 @@
     <ClCompile Include="modules\frames\menu\objsContainer\MenuContainer.cpp" />
     <ClCompile Include="modules\frames\menu\Menu.cpp" />
     <ClCompile Include="modules\other\keyboard\Keyboard.cpp" />
+    <ClCompile Include="modules\other\mouse\Mouse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="openal32.dll" />
@@ -173,6 +174,7 @@
     <ClInclude Include="modules\frames\menu\MenuHeader.h" />
     <ClInclude Include="modules\HeaderFC.h" />
     <ClInclude Include="modules\other\keyboard\KeyboardHeader.h" />
+    <ClInclude Include="modules\other\mouse\MouseHeader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
