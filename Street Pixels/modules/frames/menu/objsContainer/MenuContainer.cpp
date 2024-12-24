@@ -4,7 +4,6 @@ MenuContainer _myContainer;
 MenuContainer* GetContainer() {
 	if (!_myContainer.isCreated) {
 		_myContainer.isCreated = true;
-
 		_myContainer.font.loadFromFile("fonts/EpilepsySans.ttf");
 
 		// FPS

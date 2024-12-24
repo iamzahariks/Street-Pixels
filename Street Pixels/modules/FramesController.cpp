@@ -1,5 +1,6 @@
 #include "HeaderFC.h"
 #include "other/keyboard/KeyboardHeader.h"
+#include "other/mouse/MouseHeader.h"
 #include "frames/menu/MenuHeader.h"
 #include "frames/game/GameHeader.h"
 #include "frames/about/AboutHeader.h"
@@ -25,6 +26,7 @@ void Render(sf::RenderWindow &window, int fps) {
 	std::string openedFrame = GetOpenedFrame();
 
 	UpdateKeyboard(window, openedFrame);
+	UpdateMouse(window, openedFrame);
 	GetFrames()[openedFrame]->Render(window, fps);
 };
 

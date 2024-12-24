@@ -14,7 +14,7 @@ void UpdateKeyboard(sf::RenderWindow &window, std::string openedFrame) {
 			continue;
 		}
 
-		for (std::tuple<std::string, keyboardFunc> &frameInfo : std::get<2>(kInfo)) {
+		for (std::tuple<std::string, keyboardFunc> &frameInfo : std::get<3>(kInfo)) {
 			if (std::get<0>(frameInfo).compare(openedFrame) != 0) { continue; }
 			std::get<1>(frameInfo)(window);
 		}
@@ -22,18 +22,27 @@ void UpdateKeyboard(sf::RenderWindow &window, std::string openedFrame) {
 }
 
 // Нажатие на кнопку клавиатуры(подключение функции)
-int KeyPressConnect(sf::Keyboard::Key key, std::string frameName, keyboardFunc function) {
+int* KeyPressConnect(sf::Keyboard::Key key, std::string frameName, keyboardFunc function) {
 	_keyboardInfo* keyboardKey = GetKeyboardKey(key);
 
-	std::get<2>(*keyboardKey).push_back(std::tuple<std::string, keyboardFunc>(frameName, function));
-	return std::get<2>(*keyboardKey).size() - 1;
+	std::get<3>(*keyboardKey).push_back(std::tuple<std::string, keyboardFunc>(frameName, function));
+	int* newId = new int(std::get<3>(*keyboardKey).size() - 1);
+	std::get<2>(*keyboardKey).push_back(newId);
+
+	return std::get<2>(*keyboardKey).back();
 }
 
 // Нажатие на кнопку клавиатуры(отключение функции)
-void KeyPressDisconnect(sf::Keyboard::Key key, int id) {
+void KeyPressDisconnect(sf::Keyboard::Key key, int *id) {
 	if (!keyBoardExist(key)) { return; }
-	_keyboardInfo keyboardKey = *GetKeyboardKey(key);
-	std::get<2>(keyboardKey).erase( std::next(std::get<2>(keyboardKey).begin(), id) );
+
+	_keyboardInfo* keyboardKey = GetKeyboardKey(key);
+	for (int* connectorId : std::get<2>(*keyboardKey)) {
+		if (*connectorId < *id) continue;
+		(*connectorId)--;
+	}
+
+	std::get<3>(*keyboardKey).erase(std::next(std::get<3>(*keyboardKey).begin(), *id));
 }
 
 // Получить _keyboardInfo клавиши
@@ -42,8 +51,10 @@ _keyboardInfo* GetKeyboardKey(sf::Keyboard::Key key) {
 		if (std::get<0>(kInfo) == key) { return &kInfo; }
 	}
 
-	storageFunctions.push_back({key, false, std::vector<std::tuple<std::string, keyboardFunc>>()});
-	return &storageFunctions[storageFunctions.size() - 1];
+	storageFunctions.push_back({key, false, std::vector<int*>{}, 
+		std::vector<std::tuple<std::string, keyboardFunc>>() });
+
+	return &storageFunctions.back();
 }
 
 // Зажата ли кнопка
