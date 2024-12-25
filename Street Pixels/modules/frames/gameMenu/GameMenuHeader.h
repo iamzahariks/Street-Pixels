@@ -1,4 +1,4 @@
 #include "../../HeaderFC.h"
 #pragma once
 
-Frame* GetGame();
+Frame* GetGameMenu();
