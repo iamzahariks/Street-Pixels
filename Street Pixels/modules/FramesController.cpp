@@ -2,7 +2,7 @@
 #include "other/keyboard/KeyboardHeader.h"
 #include "other/mouse/MouseHeader.h"
 #include "frames/menu/MenuHeader.h"
-#include "frames/game/GameHeader.h"
+#include "frames/gameMenu/GameMenuHeader.h"
 #include "frames/about/AboutHeader.h"
 
 // Обновления окон при открытии нового окна
@@ -49,7 +49,7 @@ struct FramesStorage storage;
 std::map <std::string, Frame*> GetFrames() {
 	if (!storage.init) {
 		storage.init = true;
-		storage.frames["game"] = GetGame();
+		storage.frames["gameMenu"] = GetGameMenu();
 		storage.frames["menu"] = GetMenu();
 		storage.frames["about"] = GetAbout();
 	}

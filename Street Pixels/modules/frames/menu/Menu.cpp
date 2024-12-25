@@ -66,7 +66,7 @@ void Menu_ExitHover(sf::RenderWindow& window) {
 
 // Нажатие по кнопке Play
 void Menu_PlayClick(sf::RenderWindow& window) {
-	
+	OpenFrame("gameMenu");
 }
 
 // Нажатие по кнопке About
@@ -86,7 +86,7 @@ void Menu_Enter(sf::RenderWindow& window) {
 
 	switch (container->choice) {
 		case(0): {
-
+			OpenFrame("gameMenu");
 			break;
 		}
 		case(1): {
