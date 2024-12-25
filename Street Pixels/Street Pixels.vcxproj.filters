@@ -18,7 +18,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="modules\frames\game\Game.cpp">
+    <ClCompile Include="modules\frames\gameMenu\GameMenu.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="modules\frames\menu\Menu.cpp">
@@ -30,7 +30,7 @@
     <ClCompile Include="modules\frames\menu\objsContainer\MenuContainer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="modules\frames\game\objsContainer\GameContainer.cpp">
+    <ClCompile Include="modules\frames\gameMenu\objsContainer\GameMenuContainer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="modules\frames\about\objsContainer\AboutContainer.cpp">
@@ -69,10 +69,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="modules\frames\game\structs\Car.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\frames\game\GameHeader.h">
+    <ClInclude Include="modules\frames\gameMenu\GameMenuHeader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="modules\frames\menu\MenuHeader.h">
@@ -84,7 +81,7 @@
     <ClInclude Include="modules\frames\menu\objsContainer\MC_Header.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="modules\frames\game\objsContainer\GC_Header.h">
+    <ClInclude Include="modules\frames\gameMenu\objsContainer\GMC_Header.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="modules\frames\about\objsContainer\AC_Header.h">

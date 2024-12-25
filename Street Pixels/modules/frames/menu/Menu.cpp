@@ -3,7 +3,7 @@
 #include "../../other/keyboard/KeyboardHeader.h"
 #include "../../other/mouse/MouseHeader.h"
 
-// Рендер меню
+// ГђГҐГ­Г¤ГҐГ° Г¬ГҐГ­Гѕ
 void Menu_Render(sf::RenderWindow &window, int fps) {
 	MenuContainer *container = GetContainer();
 	
@@ -15,7 +15,7 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 	// FPS
 	container->fpsText.setString(std::to_string(fps));
 	
-	// Расстановки
+	// ГђГ Г±Г±ГІГ Г­Г®ГўГЄГЁ
 
 	for (int i = 0; i < 3; i++) {
 		container->buttons[i].setFillColor(sf::Color::White);
@@ -23,10 +23,10 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 	}
 
 
-	// Прочее
+	// ГЏГ°Г®Г·ГҐГҐ
 	container->buttons[container->choice].setFillColor(sf::Color::Red);
 		
-	// Рендер
+	// ГђГҐГ­Г¤ГҐГ°
 	window.draw(container->fpsText);
 
 	for (int i = 0; i < 3; i++) {
@@ -35,7 +35,7 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 
 }
 
-// Меню закрывается
+// ГЊГҐГ­Гѕ Г§Г ГЄГ°Г»ГўГ ГҐГІГ±Гї
 void Menu_Closing() {
 	MenuContainer* container = GetContainer();
 	container->choice = 0;
@@ -54,21 +54,21 @@ void Menu_ChoiceRemove(sf::RenderWindow& window) {
 }
 
 
-// Выделение кнопки Play
+// Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ Play
 void Menu_PlayHover(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->choiceSound.play();
 	GetContainer()->choice = 0;
 }
 
-// Выделение кнопки About
+// Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ About
 void Menu_AboutHover(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->choiceSound.play();
 	GetContainer()->choice = 1;
 }
 
-// Выделение кнопки выхода
+// Г‚Г»Г¤ГҐГ«ГҐГ­ГЁГҐ ГЄГ­Г®ГЇГЄГЁ ГўГ»ГµГ®Г¤Г 
 void Menu_ExitHover(sf::RenderWindow& window){
 	MenuContainer* container = GetContainer();
 	container->choiceSound.play();
@@ -77,20 +77,21 @@ void Menu_ExitHover(sf::RenderWindow& window){
 
 
 
-// Нажатие по кнопке Play
+// ГЌГ Г¦Г ГІГЁГҐ ГЇГ® ГЄГ­Г®ГЇГЄГҐ Play
 void Menu_PlayClick(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->clickSound.play();
+	OpenFrame("gameMenu");
 }
 
-// Нажатие по кнопке About
+// ГЌГ Г¦Г ГІГЁГҐ ГЇГ® ГЄГ­Г®ГЇГЄГҐ About
 void Menu_AboutClick(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->clickSound.play();
 	OpenFrame("about");
 }
 
-// Нажатие по кнопке Exit
+// ГЌГ Г¦Г ГІГЁГҐ ГЇГ® ГЄГ­Г®ГЇГЄГҐ Exit
 void Menu_ExitClick(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->music_menu.setVolume(27.0f);
@@ -107,6 +108,7 @@ void Menu_Enter(sf::RenderWindow& window) {
 	switch (container->choice) {
 		case(0): {
 			container->clickSound.play();
+			OpenFrame("gameMenu");
 			break;
 		}
 		case(1): {
