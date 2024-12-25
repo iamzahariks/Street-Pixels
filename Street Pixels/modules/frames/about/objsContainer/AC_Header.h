@@ -7,22 +7,14 @@
 struct AboutContainer {
 	bool isCreated = false;
 
+	sf::Texture background_about;
+	sf::Sprite backgroundSprite_about;
+
 	sf::Text fpsText;
-	sf::Text devs;
-
-	sf::Text devsList[4] = { sf::Text(), sf::Text(), sf::Text(), sf::Text() };
-	std::wstring devNames[4] = {
-		L"Позняк Захар Сергеевич",
-		L"Ильясеевич Роман Сергеевич",
-		L"Говоронок Роман Юрьевич",
-		L"Плитко Максим Андреевич", 
-	};
-
-	sf::Text exit;
-	sf::Font font;
+	sf::Font font, fps;
 	
-	sf::SoundBuffer meowSoundBuff;
-	sf::Sound meowSound;
+	sf::SoundBuffer exitBuff;
+	sf::Sound exitSound;
 };
 
 AboutContainer* GetContainer();
