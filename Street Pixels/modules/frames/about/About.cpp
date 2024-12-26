@@ -43,7 +43,7 @@ Frame* GetAbout() {
 		_createdAbout.Render = About_Render;
 		_createdAbout.Closing = About_Closing;
 
-		KeyPressConnect(sf::Keyboard::Enter, "about", About_Leave);
+		KeyPressConnect(sf::Keyboard::Escape, "about", About_Leave);
 	}
 
 	return &_createdAbout;

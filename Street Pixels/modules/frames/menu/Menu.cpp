@@ -3,7 +3,7 @@
 #include "../../other/keyboard/KeyboardHeader.h"
 #include "../../other/mouse/MouseHeader.h"
 
-// Ðåíäåð ìåíþ
+// Рендер меню
 void Menu_Render(sf::RenderWindow &window, int fps) {
 	MenuContainer *container = GetContainer();
 	
@@ -15,7 +15,7 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 	// FPS
 	container->fpsText.setString(std::to_string(fps));
 	
-	// Ðàññòàíîâêè
+	// Кнопки
 
 	for (int i = 0; i < 3; i++) {
 		container->buttons[i].setFillColor(sf::Color::White);
@@ -23,10 +23,10 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 	}
 
 
-	// Ïðî÷åå
+	// Изменение цвета кнопок при наведении
 	container->buttons[container->choice].setFillColor(sf::Color::Red);
 		
-	// Ðåíäåð
+	// FPS
 	window.draw(container->fpsText);
 
 	for (int i = 0; i < 3; i++) {
@@ -35,7 +35,7 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 
 }
 
-// Ìåíþ çàêðûâàåòñÿ
+// Пролистование
 void Menu_Closing() {
 	MenuContainer* container = GetContainer();
 	container->choice = 0;
@@ -54,21 +54,21 @@ void Menu_ChoiceRemove(sf::RenderWindow& window) {
 }
 
 
-// Âûäåëåíèå êíîïêè Play
+//  Выбор Play
 void Menu_PlayHover(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->choiceSound.play();
 	GetContainer()->choice = 0;
 }
 
-// Âûäåëåíèå êíîïêè About
+// Выбор About
 void Menu_AboutHover(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->choiceSound.play();
 	GetContainer()->choice = 1;
 }
 
-// Âûäåëåíèå êíîïêè âûõîäà
+// Выбор EXIT
 void Menu_ExitHover(sf::RenderWindow& window){
 	MenuContainer* container = GetContainer();
 	container->choiceSound.play();
@@ -77,21 +77,21 @@ void Menu_ExitHover(sf::RenderWindow& window){
 
 
 
-// Íàæàòèå ïî êíîïêå Play
+// Play
 void Menu_PlayClick(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->clickSound.play();
 	OpenFrame("gameMenu");
 }
 
-// Íàæàòèå ïî êíîïêå About
+// About
 void Menu_AboutClick(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->clickSound.play();
 	OpenFrame("about");
 }
 
-// Íàæàòèå ïî êíîïêå Exit
+// Exit
 void Menu_ExitClick(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->music_menu.setVolume(27.0f);
