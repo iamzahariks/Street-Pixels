@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include <string>
 #include <map>
 #pragma once
@@ -12,9 +11,6 @@ struct AboutContainer {
 
 	sf::Text fpsText;
 	sf::Font font, fps;
-	
-	sf::SoundBuffer exitBuff;
-	sf::Sound exitSound;
 };
 
 AboutContainer* GetContainer();

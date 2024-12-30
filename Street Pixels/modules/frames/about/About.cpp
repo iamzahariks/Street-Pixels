@@ -1,4 +1,5 @@
 #include "AboutHeader.h"
+#include "../../music/hmusic.h"
 #include "objsContainer/AC_Header.h"
 #include "../../other/keyboard/KeyboardHeader.h"
 
@@ -30,8 +31,8 @@ void About_Closing() {
 
 // Закрыть информацию о нас
 void About_Leave(sf::RenderWindow& window) {
-	AboutContainer* container = GetContainer();
-	container->exitSound.play();
+	MusicContainer* music = GetMusic();
+	music->aboutSound.play();
 	OpenFrame("menu");
 };
 
@@ -43,7 +44,7 @@ Frame* GetAbout() {
 		_createdAbout.Render = About_Render;
 		_createdAbout.Closing = About_Closing;
 
-		KeyPressConnect(sf::Keyboard::Enter, "about", About_Leave);
+		KeyPressConnect(sf::Keyboard::Escape, "about", About_Leave);
 	}
 
 	return &_createdAbout;

@@ -1,9 +1,10 @@
 #include "MenuHeader.h"
+#include "../../music/hmusic.h"
 #include "objsContainer/MC_Header.h"
 #include "../../other/keyboard/KeyboardHeader.h"
 #include "../../other/mouse/MouseHeader.h"
 
-// Ðåíäåð ìåíþ
+// Рендер меню
 void Menu_Render(sf::RenderWindow &window, int fps) {
 	MenuContainer *container = GetContainer();
 	
@@ -15,7 +16,7 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 	// FPS
 	container->fpsText.setString(std::to_string(fps));
 	
-	// Ðàññòàíîâêè
+	// Кнопки
 
 	for (int i = 0; i < 3; i++) {
 		container->buttons[i].setFillColor(sf::Color::White);
@@ -23,10 +24,10 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 	}
 
 
-	// Ïðî÷åå
+	// Изменение цвета кнопок при наведении
 	container->buttons[container->choice].setFillColor(sf::Color::Red);
 		
-	// Ðåíäåð
+	// FPS
 	window.draw(container->fpsText);
 
 	for (int i = 0; i < 3; i++) {
@@ -35,7 +36,7 @@ void Menu_Render(sf::RenderWindow &window, int fps) {
 
 }
 
-// Ìåíþ çàêðûâàåòñÿ
+// Пролистование
 void Menu_Closing() {
 	MenuContainer* container = GetContainer();
 	container->choice = 0;
@@ -44,58 +45,63 @@ void Menu_Closing() {
 void Menu_ChoiceAdd(sf::RenderWindow &window) {
 	MenuContainer* container = GetContainer();
 	container->choice = (container->choice - 1 == -1) ? 2 : container->choice - 1;
-	container->choiceSound.play();
+	MusicContainer* music = GetMusic();
+	music->choiceSound.play();
 }
 
 void Menu_ChoiceRemove(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
 	container->choice = (container->choice + 1 == 3) ? 0 : container->choice + 1;
-	container->choiceSound.play();
+	MusicContainer* music = GetMusic();
+	music->choiceSound.play();
 }
 
 
-// Âûäåëåíèå êíîïêè Play
+// Выбор Play
 void Menu_PlayHover(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
-	container->choiceSound.play();
+	MusicContainer* music = GetMusic();
+	music->choiceSound.play();
 	GetContainer()->choice = 0;
 }
 
-// Âûäåëåíèå êíîïêè About
+// Выбор About
 void Menu_AboutHover(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
-	container->choiceSound.play();
+	MusicContainer* music = GetMusic();
+	music->choiceSound.play();
 	GetContainer()->choice = 1;
 }
 
-// Âûäåëåíèå êíîïêè âûõîäà
+// Выбор EXIT
 void Menu_ExitHover(sf::RenderWindow& window){
 	MenuContainer* container = GetContainer();
-	container->choiceSound.play();
+	MusicContainer* music = GetMusic();
+	music->choiceSound.play();
 	GetContainer()->choice = 2;
 }
 
 
 
-// Íàæàòèå ïî êíîïêå Play
+// Play
 void Menu_PlayClick(sf::RenderWindow& window) {
-	MenuContainer* container = GetContainer();
-	container->clickSound.play();
+	MusicContainer* music = GetMusic();
+	music->clickSound.play();
 	OpenFrame("gameMenu");
 }
 
-// Íàæàòèå ïî êíîïêå About
+// About
 void Menu_AboutClick(sf::RenderWindow& window) {
-	MenuContainer* container = GetContainer();
-	container->clickSound.play();
+	MusicContainer* music = GetMusic();
+	music->clickSound.play();
 	OpenFrame("about");
 }
 
-// Íàæàòèå ïî êíîïêå Exit
+// Exit
 void Menu_ExitClick(sf::RenderWindow& window) {
-	MenuContainer* container = GetContainer();
-	container->music_menu.setVolume(27.0f);
-	container->exitSound.play();
+	MusicContainer* music = GetMusic();
+	music->music_menu.setVolume(27.0f);
+	music->exitSound.play();
 	sf::sleep(sf::milliseconds(1300));
 	window.close();
 }
@@ -104,21 +110,22 @@ void Menu_ExitClick(sf::RenderWindow& window) {
 
 void Menu_Enter(sf::RenderWindow& window) {
 	MenuContainer* container = GetContainer();
+	MusicContainer* music = GetMusic();
 
 	switch (container->choice) {
 		case(0): {
-			container->clickSound.play();
+			music->clickSound.play();
 			OpenFrame("gameMenu");
 			break;
 		}
 		case(1): {
-			container->clickSound.play();
+			music->clickSound.play();
 			OpenFrame("about");
 			break;
 		}
 		case(2): {
-			container->music_menu.setVolume(26.0f);
-			container->exitSound.play();
+			music->music_menu.setVolume(26.0f);
+			music->exitSound.play();
 			sf::sleep(sf::milliseconds(1350));
 			window.close();
 			break;
@@ -131,9 +138,9 @@ Frame* GetMenu() {
 	if (_createdMenu.frameName == "frame") {
 		_createdMenu.frameName = "menu";
 
-		MenuContainer* container = GetContainer();
-		container->music_menu.setLoop(true);
-		container->music_menu.play();
+		MusicContainer* music = GetMusic();
+		music->music_menu.setLoop(true);
+		music->music_menu.play();
 
 		_createdMenu.Render = Menu_Render;
 		_createdMenu.Closing = Menu_Closing;

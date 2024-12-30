@@ -16,11 +16,6 @@ AboutContainer* GetContainer() {
 		_myContainer.fpsText.setFillColor(sf::Color::Green);
 		_myContainer.fpsText.setCharacterSize(26);
 		_myContainer.fpsText.setFont(_myContainer.fps);
-
-		// Звуки
-		_myContainer.exitBuff.loadFromFile("sounds/about.wav");
-		_myContainer.exitSound.setBuffer(_myContainer.exitBuff);
-		_myContainer.exitSound.setVolume(44.0f);
 	}
 
 	return &_myContainer;

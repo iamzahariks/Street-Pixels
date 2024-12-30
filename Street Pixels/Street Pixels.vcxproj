@@ -141,6 +141,7 @@
     <ClCompile Include="modules\frames\gameMenu\objsContainer\GameMenuContainer.cpp" />
     <ClCompile Include="modules\frames\menu\objsContainer\MenuContainer.cpp" />
     <ClCompile Include="modules\frames\menu\Menu.cpp" />
+    <ClCompile Include="modules\music\music.cpp" />
     <ClCompile Include="modules\other\keyboard\Keyboard.cpp" />
     <ClCompile Include="modules\other\mouse\Mouse.cpp" />
   </ItemGroup>
@@ -172,6 +173,7 @@
     <ClInclude Include="modules\frames\menu\objsContainer\MC_Header.h" />
     <ClInclude Include="modules\frames\menu\MenuHeader.h" />
     <ClInclude Include="modules\HeaderFC.h" />
+    <ClInclude Include="modules\music\hmusic.h" />
     <ClInclude Include="modules\other\keyboard\KeyboardHeader.h" />
     <ClInclude Include="modules\other\mouse\MouseHeader.h" />
   </ItemGroup>
