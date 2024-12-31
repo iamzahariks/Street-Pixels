@@ -28,20 +28,20 @@ GameMenuContainer* GetContainer() {
 			sf::Vector2f(640, 60), &_myContainer.font});
 		_myContainer.textLabels.push_back({ sf::Text(), L"Настройте матч по вашему желанию!", 26,
 			sf::Color::Cyan, sf::Vector2f(640, 140), &_myContainer.font });
-		_myContainer.textLabels.push_back({ sf::Text(), L"Выйти в меню", 26, sf::Color::White,
-			sf::Vector2f(180, 640), &_myContainer.font });
 		_myContainer.textLabels.push_back({ sf::Text(), L"Количество ботов", 26, sf::Color::White,
 			sf::Vector2f(640, 230), &_myContainer.font });
 		_myContainer.textLabels.push_back({ sf::Text(), L"Скорость машин", 26, sf::Color::White,
-			sf::Vector2f(640, 350), &_myContainer.font });
+			sf::Vector2f(640, 330), &_myContainer.font });
 
 		// Кнопки
-		_myContainer.buttons.push_back({ sf::Text(), L"0", 30, sf::Color::White,
-			sf::Vector2f(640, 270), &_myContainer.fpsFont });
-		_myContainer.buttons.push_back({ sf::Text(), L"6", 30, sf::Color::White,
-			sf::Vector2f(640, 380), &_myContainer.fpsFont });
-		_myContainer.buttons.push_back({ sf::Text(), L"Старт!", 48, sf::Color::White,
+		_myContainer.buttons.push_back({ sf::Text(), L"0", 48, sf::Color::White,
+			sf::Vector2f(640, 260), &_myContainer.fpsFont });
+		_myContainer.buttons.push_back({ sf::Text(), L"6", 48, sf::Color::White,
+			sf::Vector2f(640, 360), &_myContainer.fpsFont });
+		_myContainer.buttons.push_back({ sf::Text(), L"Старт!", 52, sf::Color::White,
 			sf::Vector2f(640, 500), &_myContainer.font });
+		_myContainer.buttons.push_back({ sf::Text(), L"Выйти в меню", 26, sf::Color::White,
+			sf::Vector2f(180, 640), &_myContainer.font });
 
 		makeTexts(&_myContainer.textLabels);
 		makeTexts(&_myContainer.buttons);
