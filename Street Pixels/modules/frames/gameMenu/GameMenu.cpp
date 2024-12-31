@@ -16,6 +16,11 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 			sf::Vector2f(std::get<0>(container->textLabels[i]).getLocalBounds().width / 2, 0));
 	}
 
+	for (int i = 0; i < container->buttons.size(); i++) {
+		std::get<0>(container->buttons[i]).setOrigin(
+			sf::Vector2f(std::get<0>(container->buttons[i]).getLocalBounds().width / 2, 0));
+	}
+
 	// Вращение текста "Настройте матч"
 	if (!container->_rotateTextMatch) {
 		float _newRotation = std::get<0>(container->textLabels[1]).getRotation();
@@ -33,16 +38,21 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 		std::get<0>(container->textLabels[1]).setRotation(_newRotation);
 		container->_rotateTextMatch = (_newRotation <= -5.0) ? false : true;
 	}
+	//
 
 	// Рендер
 	window.draw(container->fpsText);
 	for (int i = 0; i < container->textLabels.size(); i++) {
 		window.draw(std::get<0>(container->textLabels[i]));
 	}
+
+	for (int i = 0; i < container->buttons.size(); i++) {
+		window.draw(std::get<0>(container->buttons[i]));
+	}
 }
 
 void GameMenuClose() {
-
+	GetContainer()->choice = 0;
 }
 
 

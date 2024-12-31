@@ -23,7 +23,7 @@ int main() {
         return 1;
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-
+    
 
 
     // Πενδεπ

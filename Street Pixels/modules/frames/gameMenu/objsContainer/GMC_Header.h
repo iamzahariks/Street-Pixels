@@ -15,6 +15,7 @@ struct GameMenuContainer {
 	int choice = 0;
 	std::vector < std::tuple<sf::Text, std::wstring, int, sf::Color, sf::Vector2f, sf::Font*> > buttons;
 
+	sf::Font fpsFont;
 	sf::Font font;
 };
 
