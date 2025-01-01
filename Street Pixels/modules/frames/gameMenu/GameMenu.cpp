@@ -1,5 +1,6 @@
 #include "GameMenuHeader.h"
 #include "objsContainer/GMC_Header.h"
+#include "../game/GameHeader.h"
 #include "../../other/keyboard/KeyboardHeader.h"
 #include "../../other/mouse/MouseHeader.h"
 
@@ -67,7 +68,8 @@ void GameMenuClose() {
 
 
 void GameMenu_StartGame(sf::RenderWindow& window) {
-
+	Game_LoadSettingsToGame(GetContainer()->countOfBots, GetContainer()->maxSpeed);
+	OpenFrame("game");
 }
 
 void GameMenu_OpenMenu(sf::RenderWindow &window) {
@@ -167,10 +169,10 @@ void GameMenu_ChoiceRemove(sf::RenderWindow& window) {
 
 
 
-Frame _createdGame;
+Frame _createdGameMenu;
 Frame* GetGameMenu() {
-	if (_createdGame.frameName == "frame") {
-		_createdGame.frameName = "gameMenu";
+	if (_createdGameMenu.frameName == "frame") {
+		_createdGameMenu.frameName = "gameMenu";
 
 		KeyPressConnect(sf::Keyboard::Enter, "gameMenu", GameMenu_Enter);
 		KeyPressConnect(sf::Keyboard::W, "gameMenu", GameMenu_ChoiceAdd);
@@ -178,8 +180,13 @@ Frame* GetGameMenu() {
 		KeyPressConnect(sf::Keyboard::S, "gameMenu", GameMenu_ChoiceRemove);
 		KeyPressConnect(sf::Keyboard::Down, "gameMenu", GameMenu_ChoiceRemove);
 		KeyPressConnect(sf::Keyboard::Escape, "gameMenu", GameMenu_OpenMenu);
+
+
 		KeyPressConnect(sf::Keyboard::Right, "gameMenu", GameMenu_AddValues);
+		KeyPressConnect(sf::Keyboard::D, "gameMenu", GameMenu_AddValues);
+
 		KeyPressConnect(sf::Keyboard::Left, "gameMenu", GameMenu_RemoveValues);
+		KeyPressConnect(sf::Keyboard::A, "gameMenu", GameMenu_RemoveValues);
 
 		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(0))), GameMenu_Bots_Hover);
 		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(1))), GameMenu_MaxSpeed_Hover);
@@ -190,9 +197,9 @@ Frame* GetGameMenu() {
 		ConnectMouseClickFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(3))), GameMenu_Enter);
 		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(3))), GameMenu_LeaveButton_Hover);
 
-		_createdGame.Render = GameMenuRender;
-		_createdGame.Closing = GameMenuClose;
+		_createdGameMenu.Render = GameMenuRender;
+		_createdGameMenu.Closing = GameMenuClose;
 	}
 
-	return &_createdGame;
+	return &_createdGameMenu;
 }
