@@ -73,7 +73,13 @@
     <Font Include="fonts\EpilepsySans.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="imgs\background.png">
+    <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\background.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\map1.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\car.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

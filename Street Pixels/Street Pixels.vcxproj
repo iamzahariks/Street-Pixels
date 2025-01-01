@@ -165,7 +165,9 @@
     <Font Include="fonts\EpilepsySans.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="imgs\background.png" />
+    <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\background.png" />
+    <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\car.png" />
+    <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\map1.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="modules\frames\about\AboutHeader.h" />

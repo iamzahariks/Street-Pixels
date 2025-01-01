@@ -50,8 +50,8 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 	std::get<0>(container->buttons[1]).setString(std::to_string(container->maxSpeed));
 
 	// Πενδεπ
-	window.draw(container->fpsText);
 	window.draw(container->background);
+	window.draw(container->fpsText);
 
 	for (int i = 0; i < container->textLabels.size(); i++) {
 		window.draw(std::get<0>(container->textLabels[i]));
