@@ -19,11 +19,8 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 
 	// Отрисовка машин
 	for (int i = 0; i < container->cars.size(); i++) {
-		container->cars.at(i).setOrigin(sf::Vector2f(container->cars.at(i).getLocalBounds().width / 2,
-			container->cars.at(i).getLocalBounds().height / 2));
-		
-		container->cars.at(i).setPosition(sf::Vector2f(100.0 + i * 50.0, 100.0));
-		window.draw(container->cars.at(i));
+		container->fpsText.setString(std::to_string(container->cars.at(i).Move(fps)));
+		window.draw(container->cars.at(i).object);
 	}
 
 	// Рендер
@@ -76,9 +73,7 @@ void Game_LoadSettingsToGame(int countOfBots, int maxSpeed) {
 
 	container->cars.clear();
 	for (int i = 0; i < countOfBots + 1; i++) {
-		container->cars.push_back(sf::Sprite());
-		container->cars.at(i).setTexture(container->_carSprite);
-		container->cars.at(i).setColor(container->carsColors.at(i));
+		container->cars.push_back(Car(container->carsColors.at(i), container->_carSprite));
 	}
 }
 
@@ -143,6 +138,32 @@ void Game_Right(sf::RenderWindow& window) {
 	}
 }
 
+// Выделение кнопки "Да" в меню выхода
+void Game_ExitYesHover(sf::RenderWindow& window) {
+	GameContainer* container = GetContainer();
+	container->_exitChoice = 0;
+}
+
+// Нажатие кнопки "Да" в меню выхода
+void Game_ExitYesClick(sf::RenderWindow& window) {
+	OpenFrame("menu");
+}
+
+
+
+// Выделение кнопки "Нет" в меню выхода
+void Game_ExitNoHover(sf::RenderWindow& window) {
+	GameContainer* container = GetContainer();
+	container->_exitChoice = 1;
+}
+
+// Нажатие кнопки "Нет" в меню выхода
+void Game_ExitNoClick(sf::RenderWindow& window) {
+	GameContainer* container = GetContainer();
+
+	container->_exitChoice = 0;
+	container->_gamePaused = false;
+}
 
 
 Frame _createdGame;
@@ -158,6 +179,12 @@ Frame* GetGame() {
 
 		KeyPressConnect(sf::Keyboard::Right, "game", Game_Right);
 		KeyPressConnect(sf::Keyboard::D, "game", Game_Right);
+
+		ConnectMouseClickFunc("game", &std::get<2>(GetContainer()->exitFrame), Game_ExitYesClick);
+		ConnectMouseHoverFunc("game", &std::get<2>(GetContainer()->exitFrame), Game_ExitYesHover);
+
+		ConnectMouseClickFunc("game", &std::get<3>(GetContainer()->exitFrame), Game_ExitNoClick);
+		ConnectMouseHoverFunc("game", &std::get<3>(GetContainer()->exitFrame), Game_ExitNoHover);
 
 		_createdGame.Render = Game_Render;
 		_createdGame.Closing = Game_Close;

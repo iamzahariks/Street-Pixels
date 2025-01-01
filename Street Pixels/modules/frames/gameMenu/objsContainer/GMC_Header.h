@@ -19,7 +19,7 @@ struct GameMenuContainer {
 	std::vector < std::tuple<sf::Text, std::wstring, int, sf::Color, sf::Vector2f, sf::Font*> > buttons;
 
 	int countOfBots = 0;
-	int maxSpeed = 3;
+	int maxSpeed = 200;
 
 	sf::Font fpsFont;
 	sf::Font font;

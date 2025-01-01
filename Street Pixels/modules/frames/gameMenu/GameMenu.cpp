@@ -65,7 +65,7 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 void GameMenuClose() {
 	GetContainer()->choice = 0;
 	GetContainer()->countOfBots = 0;
-	GetContainer()->maxSpeed = 3;
+	GetContainer()->maxSpeed = 200;
 }
 
 
@@ -108,8 +108,8 @@ void GameMenu_Enter(sf::RenderWindow& window) {
 			break;
 		}
 		case(1): {
-			int newValue = container->maxSpeed + 1;
-			container->maxSpeed = (newValue > 16) ? 16 : newValue;
+			int newValue = container->maxSpeed + 10;
+			container->maxSpeed = (newValue > 10000) ? 10000 : newValue;
 			break;
 		}
 		case(2): {
@@ -133,8 +133,8 @@ void GameMenu_AddValues(sf::RenderWindow& window) {
 			break;
 		}
 		case(1): {
-			int newValue = container->maxSpeed + 1;
-			container->maxSpeed = (newValue > 16) ? 16 : newValue;
+			int newValue = container->maxSpeed + 10;
+			container->maxSpeed = (newValue > 10000) ? 10000 : newValue;
 			break;
 		}
 	}
@@ -150,8 +150,8 @@ void GameMenu_RemoveValues(sf::RenderWindow& window) {
 			break;
 		}
 		case(1): {
-			int newValue = container->maxSpeed - 1;
-			container->maxSpeed = (newValue < 1) ? 1 : newValue;
+			int newValue = container->maxSpeed - 10;
+			container->maxSpeed = (newValue < 10) ? 10 : newValue;
 			break;
 		}
 	}
