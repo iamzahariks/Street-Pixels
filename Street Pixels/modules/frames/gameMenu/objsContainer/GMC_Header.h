@@ -7,6 +7,9 @@
 struct GameMenuContainer {
 	bool isCreated = false;
 
+	sf::Texture backgroundTexture;
+	sf::Sprite background;
+
 	sf::Text fpsText;
 
 	std::vector < std::tuple<sf::Text, std::wstring, int, sf::Color, sf::Vector2f, sf::Font*> > textLabels;

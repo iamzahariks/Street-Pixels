@@ -51,6 +51,8 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 
 	// Πενδεπ
 	window.draw(container->fpsText);
+	window.draw(container->background);
+
 	for (int i = 0; i < container->textLabels.size(); i++) {
 		window.draw(std::get<0>(container->textLabels[i]));
 	}

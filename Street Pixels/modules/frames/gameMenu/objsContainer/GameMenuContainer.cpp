@@ -15,6 +15,10 @@ GameMenuContainer* GetContainer() {
 	if (!_myContainer.isCreated) {
 		_myContainer.isCreated = true;
 
+		_myContainer.backgroundTexture.loadFromFile("imgs/gameMenu_background.png");
+		_myContainer.background.setTexture(_myContainer.backgroundTexture);
+		_myContainer.background.setScale(sf::Vector2f(2.0/3.0, 2.0/3.0));
+
 		_myContainer.fpsFont.loadFromFile("fonts/EpilepsySans.ttf");
 		_myContainer.font.loadFromFile("fonts/Sonic 1 Title Screen Filled.ttf");
 
@@ -27,7 +31,7 @@ GameMenuContainer* GetContainer() {
 		_myContainer.textLabels.push_back({sf::Text(), L"Street Pixels", 36, sf::Color::Yellow, 
 			sf::Vector2f(640, 60), &_myContainer.font});
 		_myContainer.textLabels.push_back({ sf::Text(), L"Настройте матч по вашему желанию!", 26,
-			sf::Color::Cyan, sf::Vector2f(640, 140), &_myContainer.font });
+			sf::Color::Green, sf::Vector2f(640, 140), &_myContainer.font });
 		_myContainer.textLabels.push_back({ sf::Text(), L"Количество ботов", 26, sf::Color::White,
 			sf::Vector2f(640, 230), &_myContainer.font });
 		_myContainer.textLabels.push_back({ sf::Text(), L"Скорость машин", 26, sf::Color::White,
