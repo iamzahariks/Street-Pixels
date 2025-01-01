@@ -139,6 +139,8 @@
     <ClCompile Include="modules\frames\about\objsContainer\AboutContainer.cpp" />
     <ClCompile Include="modules\frames\gameMenu\GameMenu.cpp" />
     <ClCompile Include="modules\frames\gameMenu\objsContainer\GameMenuContainer.cpp" />
+    <ClCompile Include="modules\frames\game\Game.cpp" />
+    <ClCompile Include="modules\frames\game\objsContainer\GameContainer.cpp" />
     <ClCompile Include="modules\frames\menu\objsContainer\MenuContainer.cpp" />
     <ClCompile Include="modules\frames\menu\Menu.cpp" />
     <ClCompile Include="modules\music\music.cpp" />
@@ -170,6 +172,8 @@
     <ClInclude Include="modules\frames\about\objsContainer\AC_Header.h" />
     <ClInclude Include="modules\frames\gameMenu\GameMenuHeader.h" />
     <ClInclude Include="modules\frames\gameMenu\objsContainer\GMC_Header.h" />
+    <ClInclude Include="modules\frames\game\GameHeader.h" />
+    <ClInclude Include="modules\frames\game\objsContainer\GC_Header.h" />
     <ClInclude Include="modules\frames\menu\objsContainer\MC_Header.h" />
     <ClInclude Include="modules\frames\menu\MenuHeader.h" />
     <ClInclude Include="modules\HeaderFC.h" />
