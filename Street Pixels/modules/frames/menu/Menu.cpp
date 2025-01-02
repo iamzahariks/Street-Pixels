@@ -100,7 +100,7 @@ void Menu_AboutClick(sf::RenderWindow& window) {
 // Exit
 void Menu_ExitClick(sf::RenderWindow& window) {
 	MusicContainer* music = GetMusic();
-	music->music_menu.setVolume(27.0f);
+	music->music_menu.setVolume(5.0);
 	music->exitSound.play();
 	sf::sleep(sf::milliseconds(1300));
 	window.close();

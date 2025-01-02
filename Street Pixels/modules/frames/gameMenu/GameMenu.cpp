@@ -1,5 +1,6 @@
 #include "GameMenuHeader.h"
 #include "objsContainer/GMC_Header.h"
+#include "../../music/hmusic.h"
 #include "../game/GameHeader.h"
 #include "../../other/keyboard/KeyboardHeader.h"
 #include "../../other/mouse/MouseHeader.h"
@@ -64,8 +65,8 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 
 void GameMenuClose() {
 	GetContainer()->choice = 0;
-	GetContainer()->countOfBots = 0;
-	GetContainer()->maxSpeed = 200;
+	GetContainer()->countOfBots = 1;
+	GetContainer()->maxSpeed = 500;
 }
 
 
@@ -82,18 +83,22 @@ void GameMenu_OpenMenu(sf::RenderWindow &window) {
 
 void GameMenu_Bots_Hover(sf::RenderWindow& window) {
 	GetContainer()->choice = 0;
+	GetMusic()->choiceSound.play();
 }
 
 void GameMenu_MaxSpeed_Hover(sf::RenderWindow& window) {
 	GetContainer()->choice = 1;
+	GetMusic()->choiceSound.play();
 }
 
 void GameMenu_Start_Hover(sf::RenderWindow& window) {
 	GetContainer()->choice = 2;
+	GetMusic()->choiceSound.play();
 }
 
 void GameMenu_LeaveButton_Hover(sf::RenderWindow& window) {
 	GetContainer()->choice = 3;
+	GetMusic()->choiceSound.play();
 }
 
 
@@ -102,22 +107,14 @@ void GameMenu_Enter(sf::RenderWindow& window) {
 	GameMenuContainer* container = GetContainer();
 
 	switch (container->choice) {
-		case(0): {
-			int newValue = container->countOfBots + 1;
-			container->countOfBots = (newValue > 4) ? 4 : newValue;
-			break;
-		}
-		case(1): {
-			int newValue = container->maxSpeed + 10;
-			container->maxSpeed = (newValue > 10000) ? 10000 : newValue;
-			break;
-		}
 		case(2): {
 			GameMenu_StartGame(window);
+			GetMusic()->clickSound.play();
 			break;
 		}
 		case(3): {
 			GameMenu_OpenMenu(window);
+			GetMusic()->clickSound.play();
 			break;
 		}
 	}
@@ -125,6 +122,7 @@ void GameMenu_Enter(sf::RenderWindow& window) {
 
 void GameMenu_AddValues(sf::RenderWindow& window) {
 	GameMenuContainer* container = GetContainer();
+	GetMusic()->clickSound.play();
 
 	switch (container->choice) {
 		case(0): {
@@ -133,7 +131,7 @@ void GameMenu_AddValues(sf::RenderWindow& window) {
 			break;
 		}
 		case(1): {
-			int newValue = container->maxSpeed + 10;
+			int newValue = container->maxSpeed + 25;
 			container->maxSpeed = (newValue > 10000) ? 10000 : newValue;
 			break;
 		}
@@ -142,6 +140,7 @@ void GameMenu_AddValues(sf::RenderWindow& window) {
 
 void GameMenu_RemoveValues(sf::RenderWindow& window) {
 	GameMenuContainer* container = GetContainer();
+	GetMusic()->clickSound.play();
 
 	switch (container->choice) {
 		case(0): {
@@ -150,7 +149,7 @@ void GameMenu_RemoveValues(sf::RenderWindow& window) {
 			break;
 		}
 		case(1): {
-			int newValue = container->maxSpeed - 10;
+			int newValue = container->maxSpeed - 25;
 			container->maxSpeed = (newValue < 10) ? 10 : newValue;
 			break;
 		}
@@ -161,11 +160,13 @@ void GameMenu_RemoveValues(sf::RenderWindow& window) {
 
 void GameMenu_ChoiceAdd(sf::RenderWindow& window) {
 	GameMenuContainer* container = GetContainer();
+	GetMusic()->choiceSound.play();
 	container->choice = (container->choice - 1 == -1) ? 2 : container->choice - 1;
 }
 
 void GameMenu_ChoiceRemove(sf::RenderWindow& window) {
 	GameMenuContainer* container = GetContainer();
+	GetMusic()->choiceSound.play();
 	container->choice = (container->choice + 1 == container->buttons.size()) ? 0 : container->choice + 1;
 }
 
