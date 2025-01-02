@@ -57,35 +57,35 @@ class Car {
 		void Acceleration(int fps) {
 			float fpsFrame = 1.0 / fps;
 
-			if (this->_checkpoints.size() > 0) {
-				// Машина - это бот, которого нужно вести по траектории
+			//if (this->_checkpoints.size() > 0) {
+			//	// Машина - это бот, которого нужно вести по траектории
 
-				int checkpointValue = this->_checkpointValue;
-				sf::Vector2f checkpoint = this->_checkpoints[checkpointValue];
-				sf::Vector2f carPos = this->GetPosition();
+			//	int checkpointValue = this->_checkpointValue;
+			//	sf::Vector2f checkpoint = this->_checkpoints[checkpointValue];
+			//	sf::Vector2f carPos = this->GetPosition();
 
-				float carAngle = this->object.getRotation();
-				carAngle = (carAngle >= 180) ? (carAngle - 360) : carAngle;
-				carAngle *= (3.1415926 / 180);
+			//	float carAngle = this->object.getRotation();
+			//	carAngle = (carAngle >= 180) ? (carAngle - 360) : carAngle;
+			//	carAngle *= (3.1415926 / 180);
 
-				int distance = sqrt(pow(carPos.x - checkpoint.x, 2) + pow(carPos.y - checkpoint.y, 2));
-				sf::Vector2f speedVector(checkpoint.x - carPos.x, checkpoint.y - carPos.y);
+			//	int distance = sqrt(pow(carPos.x - checkpoint.x, 2) + pow(carPos.y - checkpoint.y, 2));
+			//	sf::Vector2f speedVector(checkpoint.x - carPos.x, checkpoint.y - carPos.y);
 
-				if (distance < 20) {
-					this->_checkPointRotate = true;
+			//	if (distance < 20) {
+			//		this->_checkPointRotate = true;
 
-					sf::Vector2f nextCheckpoint = this->_checkpoints[(checkpointValue + 1) % this->_checkpoints.size()];
-					speedVector += sf::Vector2f(nextCheckpoint.x - carPos.x, nextCheckpoint.y - carPos.y);
-				}
+			//		sf::Vector2f nextCheckpoint = this->_checkpoints[(checkpointValue + 1) % this->_checkpoints.size()];
+			//		speedVector += sf::Vector2f(nextCheckpoint.x - carPos.x, nextCheckpoint.y - carPos.y);
+			//	}
 
-				int lengthOfVector = sqrt(speedVector.x * speedVector.x + speedVector.y * speedVector.y);
-				speedVector = sf::Vector2f(speedVector.x / lengthOfVector, speedVector.y / lengthOfVector);
+			//	int lengthOfVector = sqrt(speedVector.x * speedVector.x + speedVector.y * speedVector.y);
+			//	speedVector = sf::Vector2f(speedVector.x / lengthOfVector, speedVector.y / lengthOfVector);
 
-				float speedVectorAngle = acos(speedVector.x) * ((asin(speedVector.y) >= 0) ? (1) : (-1));
-				speedVector = sf::Vector2f(cos(speedVectorAngle - carAngle), sin(speedVectorAngle + carAngle));
+			//	float speedVectorAngle = acos(speedVector.x) * ((asin(speedVector.y) >= 0) ? (1) : (-1));
+			//	speedVector = sf::Vector2f(cos(speedVectorAngle - carAngle), sin(speedVectorAngle + carAngle));
 
-				this->SetSpeedVector(speedVector.x, speedVector.y);
-			}
+			//	this->SetSpeedVector(speedVector.x, speedVector.y);
+			//}
 
 			if (!this->_carMove) {
 				// Машинка тормозит
@@ -103,10 +103,6 @@ class Car {
 			// Ускорять машинку
 
 			this->SetSpeed(this->GetSpeed() + this->_acceleration * fpsFrame);
-		}
-
-		void SetMoveCheckpoints(std::vector<sf::Vector2f> *checkpoints) {
-			this->_checkpoints = *checkpoints;
 		}
 		
 		void SetSpeed(float newSpeed) {

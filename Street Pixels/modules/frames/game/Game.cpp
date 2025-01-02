@@ -33,19 +33,13 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 			container->cars.at(i).Acceleration(fps);
 			container->cars.at(i).Move(fps);
 		}
-
-		if (i == 1) {
-			container->fpsText.setString(std::to_string(container->cars.at(i).GetSpeedVector().x)
-				+ ' ' + std::to_string(container->cars.at(i).GetSpeedVector().y)
-				+ ' ' + std::to_string(container->cars.at(i).object.getRotation()));
-		}
 	}
 
 	// Обновить положение карты
 	Car userCar = container->cars.at(0);
 	sf::Vector2f carPosition(userCar.GetPosition().x, userCar.GetPosition().y);
 	container->_mapImage.setPosition(sf::Vector2f(640.0, 360.0) - carPosition);
-	//container->fpsText.setString(std::to_string(carPosition.x) + ' ' + std::to_string(carPosition.y));
+	container->fpsText.setString(std::to_string(carPosition.x) + ' ' + std::to_string(carPosition.y));
 	
 	// Обновить положение других машин
 	for (int i = 1; i < container->cars.size(); i++) {
@@ -104,23 +98,16 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 
 
 // Отправить настройки игры
-void Game_LoadSettingsToGame(int countOfBots, int maxSpeed) {
+void Game_LoadSettingsToGame(int maxSpeed) {
 	GameContainer* container = GetContainer();
-	container->_countOfBots = countOfBots;
 	container->_maxSpeed = maxSpeed;
 
 	container->cars.clear();
-	for (int i = 0; i < countOfBots + 1; i++) {
+	for (int i = 0; i < 1; i++) {
 		container->cars.push_back(Car(container->carsColors.at(i), container->_carSprite, container->carsPositions.at(i)));
 
-		if (i == 0) {
-			container->cars.at(i).object.setPosition(sf::Vector2f(640.0, 360.0));
-			container->cars.at(i).SetMaxSpeed(maxSpeed);
-		}
-		else {
-			container->cars.at(i).SetMaxSpeed(maxSpeed - ((rand() % 10) / 40.0 * maxSpeed));
-			container->cars.at(i).SetMoveCheckpoints(&container->checkpoints);
-		}
+		container->cars.at(i).object.setPosition(sf::Vector2f(640.0, 360.0));
+		container->cars.at(i).SetMaxSpeed(maxSpeed);
 
 		container->cars.at(i).object.setOrigin(sf::Vector2f(
 			container->cars.at(i).object.getLocalBounds().width / 2,

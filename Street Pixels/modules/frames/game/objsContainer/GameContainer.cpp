@@ -35,17 +35,9 @@ GameContainer* GetContainer() {
 
 		// Создание цветов машин
 		_myContainer.carsColors.push_back(sf::Color::White);
-		_myContainer.carsColors.push_back(sf::Color::Red);
-		_myContainer.carsColors.push_back(sf::Color::Blue);
-		_myContainer.carsColors.push_back(sf::Color::Green);
-		_myContainer.carsColors.push_back(sf::Color::Yellow);
 
 		// Расположение машин на карте
-		_myContainer.carsPositions.push_back(sf::Vector2f(-1483.0, 1438));
-		_myContainer.carsPositions.push_back(sf::Vector2f(-1393.0, 1438));
-		_myContainer.carsPositions.push_back(sf::Vector2f(-1303.0, 1438));
-		_myContainer.carsPositions.push_back(sf::Vector2f(-1438.0, 1498));
-		_myContainer.carsPositions.push_back(sf::Vector2f(-1348.0, 1498));
+		_myContainer.carsPositions.push_back(sf::Vector2f(-1348.0, 1438));
 
 		// Создание стен-коллайдеров
 		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(-1795.63, -2274.92),
@@ -94,17 +86,6 @@ GameContainer* GetContainer() {
 			sf::Vector2f(-683, -432)));
 		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(-1160, -1012),
 			sf::Vector2f(-898, -1462)));
-
-		// Расстановка чекпоинтов
-		_myContainer.checkpoints.push_back(sf::Vector2f(-1334.38, -1705));
-		_myContainer.checkpoints.push_back(sf::Vector2f(-136, -1714));
-		_myContainer.checkpoints.push_back(sf::Vector2f(-66, 828));
-		_myContainer.checkpoints.push_back(sf::Vector2f(549, 918));
-		_myContainer.checkpoints.push_back(sf::Vector2f(664, -204));
-		_myContainer.checkpoints.push_back(sf::Vector2f(1361, -241));
-		_myContainer.checkpoints.push_back(sf::Vector2f(1381, 1503));
-		_myContainer.checkpoints.push_back(sf::Vector2f(959, 1843));
-		_myContainer.checkpoints.push_back(sf::Vector2f(-1289, 1797));
 
 		// FPS
 		_myContainer.fpsText.setFillColor(sf::Color::Green);

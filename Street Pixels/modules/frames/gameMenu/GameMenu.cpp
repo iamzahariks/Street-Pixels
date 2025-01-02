@@ -47,8 +47,7 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 	std::get<0>(container->buttons[container->choice]).setFillColor(sf::Color::Red);
 
 	// Назначить новые значения строк в кнопках
-	std::get<0>(container->buttons[0]).setString(std::to_string(container->countOfBots));
-	std::get<0>(container->buttons[1]).setString(std::to_string(container->maxSpeed));
+	std::get<0>(container->buttons[0]).setString(std::to_string(container->maxSpeed));
 
 	// Рендер
 	window.draw(container->background);
@@ -65,13 +64,12 @@ void GameMenuRender(sf::RenderWindow &window, int fps) {
 
 void GameMenuClose() {
 	GetContainer()->choice = 0;
-	GetContainer()->countOfBots = 1;
 	GetContainer()->maxSpeed = 500;
 }
 
 
 void GameMenu_StartGame(sf::RenderWindow& window) {
-	Game_LoadSettingsToGame(GetContainer()->countOfBots, GetContainer()->maxSpeed);
+	Game_LoadSettingsToGame(GetContainer()->maxSpeed);
 	OpenFrame("game");
 }
 
@@ -81,23 +79,18 @@ void GameMenu_OpenMenu(sf::RenderWindow &window) {
 
 
 
-void GameMenu_Bots_Hover(sf::RenderWindow& window) {
+void GameMenu_MaxSpeed_Hover(sf::RenderWindow& window) {
 	GetContainer()->choice = 0;
 	GetMusic()->choiceSound.play();
 }
 
-void GameMenu_MaxSpeed_Hover(sf::RenderWindow& window) {
+void GameMenu_Start_Hover(sf::RenderWindow& window) {
 	GetContainer()->choice = 1;
 	GetMusic()->choiceSound.play();
 }
 
-void GameMenu_Start_Hover(sf::RenderWindow& window) {
-	GetContainer()->choice = 2;
-	GetMusic()->choiceSound.play();
-}
-
 void GameMenu_LeaveButton_Hover(sf::RenderWindow& window) {
-	GetContainer()->choice = 3;
+	GetContainer()->choice = 2;
 	GetMusic()->choiceSound.play();
 }
 
@@ -107,12 +100,12 @@ void GameMenu_Enter(sf::RenderWindow& window) {
 	GameMenuContainer* container = GetContainer();
 
 	switch (container->choice) {
-		case(2): {
+		case(1): {
 			GameMenu_StartGame(window);
 			GetMusic()->clickSound.play();
 			break;
 		}
-		case(3): {
+		case(2): {
 			GameMenu_OpenMenu(window);
 			GetMusic()->clickSound.play();
 			break;
@@ -126,11 +119,6 @@ void GameMenu_AddValues(sf::RenderWindow& window) {
 
 	switch (container->choice) {
 		case(0): {
-			int newValue = container->countOfBots + 1;
-			container->countOfBots = (newValue > 4) ? 4 : newValue;
-			break;
-		}
-		case(1): {
 			int newValue = container->maxSpeed + 25;
 			container->maxSpeed = (newValue > 10000) ? 10000 : newValue;
 			break;
@@ -144,11 +132,6 @@ void GameMenu_RemoveValues(sf::RenderWindow& window) {
 
 	switch (container->choice) {
 		case(0): {
-			int newValue = container->countOfBots - 1;
-			container->countOfBots = (newValue < 0) ? 0 : newValue;
-			break;
-		}
-		case(1): {
 			int newValue = container->maxSpeed - 25;
 			container->maxSpeed = (newValue < 10) ? 10 : newValue;
 			break;
@@ -184,21 +167,19 @@ Frame* GetGameMenu() {
 		KeyPressConnect(sf::Keyboard::Down, "gameMenu", GameMenu_ChoiceRemove);
 		KeyPressConnect(sf::Keyboard::Escape, "gameMenu", GameMenu_OpenMenu);
 
-
 		KeyPressConnect(sf::Keyboard::Right, "gameMenu", GameMenu_AddValues);
 		KeyPressConnect(sf::Keyboard::D, "gameMenu", GameMenu_AddValues);
 
 		KeyPressConnect(sf::Keyboard::Left, "gameMenu", GameMenu_RemoveValues);
 		KeyPressConnect(sf::Keyboard::A, "gameMenu", GameMenu_RemoveValues);
 
-		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(0))), GameMenu_Bots_Hover);
-		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(1))), GameMenu_MaxSpeed_Hover);
+		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(0))), GameMenu_MaxSpeed_Hover);
+
+		ConnectMouseClickFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(1))), GameMenu_Enter);
+		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(1))), GameMenu_Start_Hover);
 
 		ConnectMouseClickFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(2))), GameMenu_Enter);
-		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(2))), GameMenu_Start_Hover);
-
-		ConnectMouseClickFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(3))), GameMenu_Enter);
-		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(3))), GameMenu_LeaveButton_Hover);
+		ConnectMouseHoverFunc("gameMenu", &(std::get<0>(GetContainer()->buttons.at(2))), GameMenu_LeaveButton_Hover);
 
 		_createdGameMenu.Render = GameMenuRender;
 		_createdGameMenu.Closing = GameMenuClose;
