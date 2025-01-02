@@ -33,13 +33,19 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 			container->cars.at(i).Acceleration(fps);
 			container->cars.at(i).Move(fps);
 		}
+
+		if (i == 1) {
+			container->fpsText.setString(std::to_string(container->cars.at(i).GetSpeedVector().x)
+				+ ' ' + std::to_string(container->cars.at(i).GetSpeedVector().y)
+				+ ' ' + std::to_string(container->cars.at(i).object.getRotation()));
+		}
 	}
 
 	// Обновить положение карты
 	Car userCar = container->cars.at(0);
 	sf::Vector2f carPosition(userCar.GetPosition().x, userCar.GetPosition().y);
 	container->_mapImage.setPosition(sf::Vector2f(640.0, 360.0) - carPosition);
-	container->fpsText.setString(std::to_string(carPosition.x) + ' ' + std::to_string(carPosition.y));
+	//container->fpsText.setString(std::to_string(carPosition.x) + ' ' + std::to_string(carPosition.y));
 	
 	// Обновить положение других машин
 	for (int i = 1; i < container->cars.size(); i++) {
@@ -54,10 +60,6 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 
 	// Рендер
 	window.draw(container->_mapImage);
-
-	for (int i = 0; i < container->colliderWalls.size(); i++) {
-		window.draw(container->colliderWalls.at(i).object);
-	}
 
 	for (int i = 0; i < container->cars.size(); i++) {
 		window.draw(container->cars.at(i).object);
@@ -116,7 +118,8 @@ void Game_LoadSettingsToGame(int countOfBots, int maxSpeed) {
 			container->cars.at(i).SetMaxSpeed(maxSpeed);
 		}
 		else {
-			container->cars.at(i).SetMaxSpeed(maxSpeed - ((rand() % 10) / 20.0 * maxSpeed));
+			container->cars.at(i).SetMaxSpeed(maxSpeed - ((rand() % 10) / 40.0 * maxSpeed));
+			container->cars.at(i).SetMoveCheckpoints(&container->checkpoints);
 		}
 
 		container->cars.at(i).object.setOrigin(sf::Vector2f(
