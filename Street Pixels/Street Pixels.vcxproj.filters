@@ -76,9 +76,6 @@
     <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\background.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
-    <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\map1.png">
-      <Filter>Файлы ресурсов</Filter>
-    </Image>
     <Image Include="..\..\..\..\NotOfficialStreet\Street Pixel\images\car.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>

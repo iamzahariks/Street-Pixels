@@ -71,6 +71,9 @@ void GameMenuClose() {
 void GameMenu_StartGame(sf::RenderWindow& window) {
 	Game_LoadSettingsToGame(GetContainer()->maxSpeed);
 	OpenFrame("game");
+
+	GetMusic()->music_menu.stop();
+	GetMusic()->game_music.play();
 }
 
 void GameMenu_OpenMenu(sf::RenderWindow &window) {

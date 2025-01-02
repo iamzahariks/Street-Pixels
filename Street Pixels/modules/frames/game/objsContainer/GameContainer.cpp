@@ -86,6 +86,14 @@ GameContainer* GetContainer() {
 			sf::Vector2f(-683, -432)));
 		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(-1160, -1012),
 			sf::Vector2f(-898, -1462)));
+		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(759, -33),
+			sf::Vector2f(1071, 270)));
+		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(1008, 278),
+			sf::Vector2f(842, 755)));
+		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(1058, 771),
+			sf::Vector2f(822, 936)));
+		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(759, 1145),
+			sf::Vector2f(1054, 943)));
 
 		// FPS
 		_myContainer.fpsText.setFillColor(sf::Color::Green);

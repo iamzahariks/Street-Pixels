@@ -21,6 +21,8 @@ MusicContainer* GetMusic() {
 		_myContainer.exitSound.setVolume(15.0);
 		_myContainer.music_menu.openFromFile("sounds/menu.ogg");
 		_myContainer.music_menu.setVolume(5.0);
+		_myContainer.game_music.openFromFile("sounds/gameMusic.wav");
+		_myContainer.game_music.setVolume(5.0);
 	}
 	return &_myContainer;
 }

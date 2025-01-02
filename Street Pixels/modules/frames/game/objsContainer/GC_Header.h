@@ -18,10 +18,11 @@ class WallCollider {
 class Car {
 	private:
 		float _speed = 0.0, _maxSpeed = 0.0, _acceleration = 1000.0, _checkpointValue = 0;
-		bool _carMove = false, _accelerate = false, _checkPointRotate = false;
-		sf::Vector2f _speedVector, _position;
+		bool _carMove = false, _checkPointRotate = false, _accelerate = false;
+		sf::Vector2f _speedVector;
 		std::vector<sf::Vector2f> _checkpoints;
 	public:
+		sf::Vector2f _position;
 		sf::Sprite object;
 
 		Car(sf::Color &sendedCarColor, sf::Texture &carTexture, sf::Vector2f carPosition) {
@@ -54,6 +55,43 @@ class Car {
 			this->object.setRotation(nowAngle);
 		}
 
+		int CarInZone(std::vector<WallCollider> *zones) {
+			std::vector<sf::Vector2f> pointsOfCar;
+
+			sf::Vector2f carSize = this->object.getLocalBounds().getSize();
+			sf::Vector2f carPosition = this->GetPosition();
+
+			sf::Vector2f carLookVector = this->GetLookVector();
+			sf::Vector2f carRightVector = this->GetRightVector();
+
+			for (int i = -1; i <= 1; i += 2) {
+				for (int v = -1; v <= 1; v += 2) {
+					pointsOfCar.push_back(carPosition 
+						+ sf::Vector2f(carLookVector.x * i * carSize.y/2, carLookVector.y * i * carSize.y / 2) 
+						+ sf::Vector2f(carRightVector.x * v * carSize.x / 2, carRightVector.y * v * carSize.x / 2));
+				}
+			}
+
+			for (int wallIndex = 0; wallIndex < zones->size(); wallIndex++) {
+				sf::Vector2f sizeOfWall = zones->at(wallIndex).object.getLocalBounds().getSize();
+
+				sf::Vector2f point2 = zones->at(wallIndex)._position + sf::Vector2f(sizeOfWall.x/2, sizeOfWall.y/2);
+				sf::Vector2f point1 = zones->at(wallIndex)._position - sf::Vector2f(sizeOfWall.x/2, sizeOfWall.y/2);
+
+				for (int carPointIndex = 0; carPointIndex < pointsOfCar.size(); carPointIndex++) {
+					sf::Vector2f carPoint = pointsOfCar.at(carPointIndex);
+
+					if (carPoint.x >= point1.x && carPoint.x <= point2.x
+						&& carPoint.y >= point1.y && carPoint.y <= point2.y) 
+					{
+						return (carPointIndex <= 1) ? (1) : (-1);
+					}
+				}
+			}
+
+			return 0;
+		}
+		
 		void Acceleration(int fps) {
 			float fpsFrame = 1.0 / fps;
 
@@ -87,7 +125,7 @@ class Car {
 			//	this->SetSpeedVector(speedVector.x, speedVector.y);
 			//}
 
-			if (!this->_carMove) {
+			if (this->_carMove == false) {
 				// Машинка тормозит
 
 				this->_accelerate = (this->GetSpeed() > 0.0);
@@ -123,22 +161,39 @@ class Car {
 			return this->_speed;
 		}
 
+		sf::Vector2f GetLookVector() {
+			float carAngle = this->object.getRotation();
+			carAngle = (carAngle >= 180) ? (carAngle - 360) : carAngle;
+			carAngle -= 90;
+			carAngle *= (3.1415926 / 180);
+
+			return sf::Vector2f(cos(carAngle), sin(carAngle));
+		}
+
+		sf::Vector2f GetRightVector() {
+			float carAngle = this->object.getRotation();
+			carAngle = (carAngle >= 180) ? (carAngle - 360) : carAngle;
+			carAngle *= (3.1415926 / 180);
+
+			return sf::Vector2f(cos(carAngle), sin(carAngle));
+		}
+
 		void SetSpeedVector(float x, float y) {
 			if (y == 0.0) {
 				_carMove = false;
 				return; 
 			}
 
-			sf::Vector2f oldVector(this->GetSpeedVector().x, this->GetSpeedVector().y);
+			float savedOldY = (this->GetSpeedVector().y >= 0.0) ? 1.0 : -1.0;
 
 			float length = sqrt(x * x + y * y);
 			this->_speedVector = sf::Vector2f(x / length, y / length);
 
+			float savedNewY = (this->_speedVector.y >= 0.0) ? 1.0 : -1.0;
+
 			_carMove = true;
 			if (this->_accelerate) {
-				this->_accelerate = false;
-
-				if ( ((oldVector.y >= 0) ? 1 : -1) != ((this->_speedVector.y >= 0) ? 1 : -1) ) {
+				if (savedOldY != savedNewY) {
 					this->SetSpeed(0);
 				}
 			}

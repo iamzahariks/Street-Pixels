@@ -35,16 +35,28 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 		}
 	}
 
+	// Коллизия игрока
+	if (!container->_gamePaused) {
+		int _colliderValue = container->cars.at(0).CarInZone(&container->colliderWalls);
+
+		while (_colliderValue != 0) {
+			sf::Vector2f userCarLookVector = container->cars.at(0).GetLookVector();
+			container->cars.at(0)._position = container->cars.at(0)._position 
+				+ sf::Vector2f(userCarLookVector.x * _colliderValue, userCarLookVector.y * _colliderValue);
+
+			_colliderValue = container->cars.at(0).CarInZone(&container->colliderWalls);
+		}
+	}
+
 	// Обновить положение карты
 	Car userCar = container->cars.at(0);
 	sf::Vector2f carPosition(userCar.GetPosition().x, userCar.GetPosition().y);
 	container->_mapImage.setPosition(sf::Vector2f(640.0, 360.0) - carPosition);
-	container->fpsText.setString(std::to_string(carPosition.x) + ' ' + std::to_string(carPosition.y));
 	
 	// Обновить положение других машин
-	for (int i = 1; i < container->cars.size(); i++) {
-		container->cars.at(i).object.setPosition(container->_mapImage.getPosition() + container->cars.at(i).GetPosition());
-	}
+	//for (int i = 1; i < container->cars.size(); i++) {
+	//	container->cars.at(i).object.setPosition(container->_mapImage.getPosition() + container->cars.at(i).GetPosition());
+	//}
 
 	// Обновить положение стен-коллайдеров
 	for (int i = 0; i < container->colliderWalls.size(); i++) {
@@ -121,6 +133,9 @@ void Game_Close() {
 	GetContainer()->_gameStarted = false;
 	GetContainer()->_gamePaused = false;
 	GetContainer()->_exitChoice = 0;
+
+	GetMusic()->game_music.stop();
+	GetMusic()->music_menu.play();
 }
 
 
