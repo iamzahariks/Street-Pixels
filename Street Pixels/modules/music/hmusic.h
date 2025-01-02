@@ -6,7 +6,7 @@ struct MusicContainer {
 
 	sf::SoundBuffer choiceBuff, clickBuff, exitBuff, aboutBuff;
 	sf::Sound choiceSound, clickSound, exitSound, aboutSound;
-	sf::Music music_menu;
+	sf::Music music_menu, game_music;
 };
 
 MusicContainer* GetMusic();

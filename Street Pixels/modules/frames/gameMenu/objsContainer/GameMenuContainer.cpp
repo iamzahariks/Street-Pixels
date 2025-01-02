@@ -15,6 +15,10 @@ GameMenuContainer* GetContainer() {
 	if (!_myContainer.isCreated) {
 		_myContainer.isCreated = true;
 
+		_myContainer.backgroundTexture.loadFromFile("imgs/gameMenu_background.png");
+		_myContainer.background.setTexture(_myContainer.backgroundTexture);
+		_myContainer.background.setScale(sf::Vector2f(2.0/3.0, 2.0/3.0));
+
 		_myContainer.fpsFont.loadFromFile("fonts/EpilepsySans.ttf");
 		_myContainer.font.loadFromFile("fonts/Sonic 1 Title Screen Filled.ttf");
 
@@ -27,16 +31,14 @@ GameMenuContainer* GetContainer() {
 		_myContainer.textLabels.push_back({sf::Text(), L"Street Pixels", 36, sf::Color::Yellow, 
 			sf::Vector2f(640, 60), &_myContainer.font});
 		_myContainer.textLabels.push_back({ sf::Text(), L"Настройте матч по вашему желанию!", 26,
-			sf::Color::Cyan, sf::Vector2f(640, 140), &_myContainer.font });
-		_myContainer.textLabels.push_back({ sf::Text(), L"Количество ботов", 26, sf::Color::White,
-			sf::Vector2f(640, 230), &_myContainer.font });
+			sf::Color::Green, sf::Vector2f(640, 140), &_myContainer.font });
+		_myContainer.textLabels.push_back({ sf::Text(), L"Количество ботов - скоро!", 36, sf::Color::Cyan,
+			sf::Vector2f(640, 230), &_myContainer.fpsFont });
 		_myContainer.textLabels.push_back({ sf::Text(), L"Скорость машин", 26, sf::Color::White,
 			sf::Vector2f(640, 330), &_myContainer.font });
 
 		// Кнопки
 		_myContainer.buttons.push_back({ sf::Text(), L"0", 48, sf::Color::White,
-			sf::Vector2f(640, 260), &_myContainer.fpsFont });
-		_myContainer.buttons.push_back({ sf::Text(), L"6", 48, sf::Color::White,
 			sf::Vector2f(640, 360), &_myContainer.fpsFont });
 		_myContainer.buttons.push_back({ sf::Text(), L"Старт!", 52, sf::Color::White,
 			sf::Vector2f(640, 500), &_myContainer.font });
