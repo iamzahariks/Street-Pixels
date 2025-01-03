@@ -29,10 +29,14 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 
 	// Ускорение на Shift
 	if (!container->_gamePaused) {
+		MusicContainer* music = GetMusic();
 		if (KeyPressed(sf::Keyboard::LShift) || (KeyPressed(sf::Keyboard::RShift))) {
 			container->cars[0].ShiftPressed();
+				music->nitroSound.setVolume(45);
 		}
 		else {
+			music->nitroSound.play();
+			music->nitroSound.setVolume(0);
 			container->cars[0].ShiftUnPressed();
 		}
 	}
@@ -75,6 +79,7 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 	}
 
 	// Рендер
+	window.draw(container->_mapBackImage);
 	window.draw(container->_mapImage);
 
 	for (int i = 0; i < container->cars.size(); i++) {
