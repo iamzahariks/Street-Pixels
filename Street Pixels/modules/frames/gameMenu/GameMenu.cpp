@@ -123,7 +123,7 @@ void GameMenu_AddValues(sf::RenderWindow& window) {
 	switch (container->choice) {
 		case(0): {
 			int newValue = container->maxSpeed + 25;
-			container->maxSpeed = (newValue > 10000) ? 10000 : newValue;
+			container->maxSpeed = (newValue > 1500) ? 1500 : newValue;
 			break;
 		}
 	}

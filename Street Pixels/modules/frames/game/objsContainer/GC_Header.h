@@ -231,6 +231,8 @@ struct GameContainer {
 
 	bool _gamePaused = false;
 	bool _gameStarted = false;
+	bool _missionCompleted = false;
+
 	int _countOfBots = 0;
 	int _maxSpeed = 3;
 
@@ -242,6 +244,11 @@ struct GameContainer {
 	sf::Font font;
 
 	sf::Text fpsText;
+
+	float _timerMission;
+	int missionCheckpoint;
+	sf::Text timer;
+	sf::Text missionTxt;
 
 	std::vector<sf::Vector2f> carsPositions;
 	std::vector<sf::Color> carsColors;

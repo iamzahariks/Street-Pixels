@@ -100,10 +100,36 @@ GameContainer* GetContainer() {
 		_myContainer.colliderWalls.push_back(CreateRectangleByPositions(sf::Vector2f(759, 1145),
 			sf::Vector2f(1054, 943)));
 
+		// Расстановка чекпоинтов для заезда
+		_myContainer.checkpoints.push_back(sf::Vector2f(-1321, -1700));
+		_myContainer.checkpoints.push_back(sf::Vector2f(-157, -1715));
+		_myContainer.checkpoints.push_back(sf::Vector2f(12, 865));
+		_myContainer.checkpoints.push_back(sf::Vector2f(556, 890));
+		_myContainer.checkpoints.push_back(sf::Vector2f(680, -212));
+		_myContainer.checkpoints.push_back(sf::Vector2f(1383, -157));
+		_myContainer.checkpoints.push_back(sf::Vector2f(1373, 1514));
+		_myContainer.checkpoints.push_back(sf::Vector2f(1022, 1845));
+		_myContainer.checkpoints.push_back(sf::Vector2f(288, 1844));
+		_myContainer.checkpoints.push_back(sf::Vector2f(-553, 1811));
+		_myContainer.checkpoints.push_back(sf::Vector2f(-1391, 1443));
+
 		// FPS
 		_myContainer.fpsText.setFillColor(sf::Color::Green);
 		_myContainer.fpsText.setCharacterSize(26);
 		_myContainer.fpsText.setFont(_myContainer.fpsFont);
+
+		// Таймер для кругов
+		_myContainer.timer.setFillColor(sf::Color::White);
+		_myContainer.timer.setCharacterSize(26);
+		_myContainer.timer.setFont(_myContainer.fpsFont);
+		_myContainer.timer.setPosition(sf::Vector2f(1035, 50));
+
+		// Инфо о миссии
+		_myContainer.missionTxt.setString(L"Заверши первый круг как можно скорее!");
+		_myContainer.missionTxt.setFillColor(sf::Color::White);
+		_myContainer.missionTxt.setCharacterSize(8);
+		_myContainer.missionTxt.setFont(_myContainer.font);
+		_myContainer.missionTxt.setPosition(sf::Vector2f(950, 25));
 
 		// Настройка выхода из игры
 		_myContainer.exitTexture.loadFromFile("imgs/gameLeave.png");

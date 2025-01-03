@@ -16,6 +16,15 @@ MusicContainer* GetMusic() {
 		_myContainer.exitBuff.loadFromFile("sounds/exit.wav");
 		_myContainer.exitSound.setBuffer(_myContainer.exitBuff);
 		_myContainer.exitSound.setVolume(45.0);
+		_myContainer.victoryBuff.loadFromFile("sounds/victory.ogg");
+		_myContainer.victory.setBuffer(_myContainer.victoryBuff);
+		_myContainer.victory.setVolume(80.0);
+		_myContainer.checkpointBuff.loadFromFile("sounds/checkpoint.ogg");
+		_myContainer.checkpoint.setBuffer(_myContainer.checkpointBuff);
+		_myContainer.checkpoint.setVolume(120.0);
+		_myContainer.exitBuff.loadFromFile("sounds/exit.wav");
+		_myContainer.exitSound.setBuffer(_myContainer.exitBuff);
+		_myContainer.exitSound.setVolume(45.0);
 		_myContainer.carExplosionBuff.loadFromFile("sounds/carExplosion.ogg");
 		_myContainer.carExplosion.setBuffer(_myContainer.carExplosionBuff);
 		_myContainer.carExplosion.setVolume(45.0);

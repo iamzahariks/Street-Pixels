@@ -19,6 +19,12 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 		255 - (255 - (int)(_fpsColorRate * 255)), 0, 255));
 	container->fpsText.setString(std::to_string(fps));
 	
+	// Таймер
+	if (!container->_missionCompleted) {
+		container->_timerMission += _framerate;
+		container->timer.setString(std::to_string(container->_timerMission));
+	}
+
 	// Движение игрока
 	if (!container->_gamePaused) {
 		x = 0.0; y = 0.0;
@@ -100,6 +106,23 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 			+ container->colliderWalls.at(i)._position);
 	}
 
+	// Обновить информацию о чекпоинтах игрока
+	sf::Vector2f _needCheckpoint = 
+		container->checkpoints.at((container->missionCheckpoint) % container->checkpoints.size());
+
+	if ((!container->_missionCompleted) && (sqrt(pow(_needCheckpoint.x - container->cars.at(0).GetPosition().x, 2)
+		+ pow(_needCheckpoint.y - container->cars.at(0).GetPosition().y, 2)) <= 100.0))
+	{
+		GetMusic()->checkpoint.play();
+
+		container->missionCheckpoint++;
+		container->_missionCompleted = (container->missionCheckpoint == container->checkpoints.size()) ? true : false;
+
+		if (container->_missionCompleted) {
+			GetMusic()->victory.play();
+		}
+	}
+
 	// Рендер
 	window.draw(container->_mapBackImage);
 	window.draw(container->_mapImage);
@@ -142,6 +165,8 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 	}
 
 	window.draw(container->fpsText);
+	window.draw(container->timer);
+	window.draw(container->missionTxt);
 }
 
 
@@ -170,6 +195,10 @@ void Game_Close() {
 	GetContainer()->_gameStarted = false;
 	GetContainer()->_gamePaused = false;
 	GetContainer()->_exitChoice = 0;
+
+	GetContainer()->_missionCompleted = false;
+	GetContainer()->_timerMission = 0.0;
+	GetContainer()->missionCheckpoint = 0;
 
 	GetMusic()->game_music.stop();
 	GetMusic()->music_menu.play();
