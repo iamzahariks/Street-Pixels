@@ -19,7 +19,7 @@ public:
 		isEnabled = true;
 		UpdateFrames(frameName);
 	}
-	
+		
 	// Закрыть фрейм(самостоятельно лучше не использовать данный метод)
 	void Close() {
 		isEnabled = false;

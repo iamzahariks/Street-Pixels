@@ -10,8 +10,8 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 	GameContainer* container = GetContainer();
 
 	// FPS
-	float _fpsValue = (fps / 144.0 > 1.0) ? (1.0) : (fps / 144.0);
-	container->fpsText.setFillColor(sf::Color(255 - (int)(_fpsValue * 255), 255 - (255 - (int)(_fpsValue * 255)), 0, 255));
+	float _framerate = (fps / 144.0 > 1.0) ? (1.0) : (fps / 144.0);
+	container->fpsText.setFillColor(sf::Color(255 - (int)(_framerate * 255), 255 - (255 - (int)(_framerate * 255)), 0, 255));
 	container->fpsText.setString(std::to_string(fps));
 	
 	// Движение игрока
@@ -25,6 +25,16 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 		y += (((KeyPressed(sf::Keyboard::S) || (KeyPressed(sf::Keyboard::Down)))) ? 1.0 : 0);
 
 		container->cars.at(0).SetSpeedVector(x, y);
+	}
+
+	// Ускорение на Shift
+	if (!container->_gamePaused) {
+		if (KeyPressed(sf::Keyboard::LShift) || (KeyPressed(sf::Keyboard::RShift))) {
+			container->cars[0].ShiftPressed();
+		}
+		else {
+			container->cars[0].ShiftUnPressed();
+		}
 	}
 
 	// Движение машин

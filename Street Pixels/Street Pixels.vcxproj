@@ -24,6 +24,7 @@
     <ProjectGuid>{4ab14f73-6a12-4fb6-9ca8-f98430068a03}</ProjectGuid>
     <RootNamespace>StreetPixels</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Street Pixel</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

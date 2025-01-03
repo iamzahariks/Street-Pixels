@@ -4,6 +4,7 @@
 #include <vector>
 #pragma once
 
+// Класс стены-коллайдера
 class WallCollider {
 	public: 
 		sf::RectangleShape object;
@@ -15,10 +16,11 @@ class WallCollider {
 		}
 };
 
+// Класс машины
 class Car {
 	private:
 		float _speed = 0.0, _maxSpeed = 0.0, _acceleration = 1000.0, _checkpointValue = 0;
-		bool _carMove = false, _checkPointRotate = false, _accelerate = false;
+		bool _carMove = false, _checkPointRotate = false, _accelerate = false, _shiftEnabled = false;
 		sf::Vector2f _speedVector;
 		std::vector<sf::Vector2f> _checkpoints;
 	public:
@@ -143,6 +145,20 @@ class Car {
 			this->SetSpeed(this->GetSpeed() + this->_acceleration * fpsFrame);
 		}
 		
+		void ShiftPressed() {
+			if (this->_shiftEnabled) return;
+			this->_shiftEnabled = true;
+			this->_acceleration += 1500;
+			this->_maxSpeed += 150;
+		}
+
+		void ShiftUnPressed() {
+			if (!this->_shiftEnabled) return;
+			this->_shiftEnabled = false;
+			this->_acceleration -= 1500;
+			this->_maxSpeed -= 150;
+		}
+
 		void SetSpeed(float newSpeed) {
 			newSpeed = (newSpeed < 0.0) ? 0.0 : newSpeed;
 			this->_speed = (newSpeed > this->GetMaxSpeed()) ? this->GetMaxSpeed() : newSpeed;

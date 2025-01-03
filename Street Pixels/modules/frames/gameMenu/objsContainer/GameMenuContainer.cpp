@@ -28,7 +28,7 @@ GameMenuContainer* GetContainer() {
 		_myContainer.fpsText.setFont(_myContainer.fpsFont);
 		
 		// Тексты
-		_myContainer.textLabels.push_back({sf::Text(), L"Street Pixels", 36, sf::Color::Yellow, 
+		_myContainer.textLabels.push_back({sf::Text(), L"Street Pixel", 36, sf::Color::Yellow, 
 			sf::Vector2f(640, 60), &_myContainer.font});
 		_myContainer.textLabels.push_back({ sf::Text(), L"Настройте матч по вашему желанию!", 26,
 			sf::Color::Green, sf::Vector2f(640, 140), &_myContainer.font });
