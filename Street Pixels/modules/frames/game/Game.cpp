@@ -4,14 +4,19 @@
 #include "../../other/keyboard/KeyboardHeader.h"
 #include "../../other/mouse/MouseHeader.h"
 
+// Выход из игры(шаблон)
+void Game_Close();
+
 //Рендер
 float x, y;
 void Game_Render(sf::RenderWindow &window, int fps) {
 	GameContainer* container = GetContainer();
 
 	// FPS
-	float _framerate = (fps / 144.0 > 1.0) ? (1.0) : (fps / 144.0);
-	container->fpsText.setFillColor(sf::Color(255 - (int)(_framerate * 255), 255 - (255 - (int)(_framerate * 255)), 0, 255));
+	float _framerate = 1.0 / fps;
+	float _fpsColorRate = (fps / 144.0 > 1.0) ? (1.0) : (fps / 144.0);
+	container->fpsText.setFillColor(sf::Color(255 - (int)(_fpsColorRate * 255),
+		255 - (255 - (int)(_fpsColorRate * 255)), 0, 255));
 	container->fpsText.setString(std::to_string(fps));
 	
 	// Движение игрока
@@ -32,12 +37,29 @@ void Game_Render(sf::RenderWindow &window, int fps) {
 		MusicContainer* music = GetMusic();
 		if (KeyPressed(sf::Keyboard::LShift) || (KeyPressed(sf::Keyboard::RShift))) {
 			container->cars[0].ShiftPressed();
-				music->nitroSound.setVolume(45);
+			music->nitroSound.setVolume(45);
+
+			container->cars[0]._carHeat = (container->cars[0]._carHeat + _framerate > 5.0)
+				? 5.0 : container->cars[0]._carHeat + _framerate;
 		}
 		else {
 			music->nitroSound.play();
 			music->nitroSound.setVolume(0);
 			container->cars[0].ShiftUnPressed();
+
+			container->cars[0]._carHeat = (container->cars[0]._carHeat - _framerate < 0.0) 
+				? 0.0 : container->cars[0]._carHeat - _framerate;
+		}
+
+		int _userCarHeat = container->cars[0]._carHeat;
+		container->cars[0].object.setColor(sf::Color(255.0, 
+			255.0 - (255.0 * (_userCarHeat/5.0)), 255.0 - (255.0 * (_userCarHeat / 5.0)), 255.0));
+
+		if (container->cars[0]._carHeat == 5) {
+			music->carExplosion.play();
+			OpenFrame("menu");
+			Game_Close();
+			return;
 		}
 	}
 

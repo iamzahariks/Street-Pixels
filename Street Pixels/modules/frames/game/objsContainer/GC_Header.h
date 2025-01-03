@@ -20,11 +20,12 @@ class WallCollider {
 // Класс машины
 class Car {
 	private:
-		float _speed = 0.0, _maxSpeed = 0.0, _acceleration = 1000.0, _checkpointValue = 0;
+		float _speed = 0.0, _maxSpeed = 0.0, _acceleration = 1000.0, _checkpointValue = 0.0;
 		bool _carMove = false, _checkPointRotate = false, _accelerate = false, _shiftEnabled = false;
 		sf::Vector2f _speedVector;
 		std::vector<sf::Vector2f> _checkpoints;
 	public:
+		float _carHeat = 0.0;
 		sf::Vector2f _position;
 		sf::Sprite object;
 

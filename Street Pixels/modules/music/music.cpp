@@ -16,6 +16,9 @@ MusicContainer* GetMusic() {
 		_myContainer.exitBuff.loadFromFile("sounds/exit.wav");
 		_myContainer.exitSound.setBuffer(_myContainer.exitBuff);
 		_myContainer.exitSound.setVolume(45.0);
+		_myContainer.carExplosionBuff.loadFromFile("sounds/carExplosion.ogg");
+		_myContainer.carExplosion.setBuffer(_myContainer.carExplosionBuff);
+		_myContainer.carExplosion.setVolume(45.0);
 		_myContainer.nitroBuff.loadFromFile("sounds/nitro.wav");
 		_myContainer.nitroSound.setBuffer(_myContainer.nitroBuff);
 		_myContainer.nitroSound.setVolume(45.0);
