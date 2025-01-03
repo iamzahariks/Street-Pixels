@@ -4,6 +4,7 @@
 #include <vector>
 #pragma once
 
+
 // Класс стены-коллайдера
 class WallCollider {
 	public: 
@@ -233,8 +234,8 @@ struct GameContainer {
 	int _maxSpeed = 3;
 
 	sf::Texture _carSprite;
-	sf::Texture _mapSprite;
-	sf::Sprite _mapImage;
+	sf::Texture _mapSprite, _mapBack;
+	sf::Sprite _mapImage, _mapBackImage;
 
 	sf::Font fpsFont;
 	sf::Font font;

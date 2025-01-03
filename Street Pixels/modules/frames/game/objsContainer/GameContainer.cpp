@@ -20,6 +20,11 @@ GameContainer* GetContainer() {
 
 		_myContainer.fpsFont.loadFromFile("fonts/EpilepsySans.ttf");
 		_myContainer.font.loadFromFile("fonts/Sonic 1 Title Screen Filled.ttf");
+		
+		//Задний фон
+		_myContainer._mapBack.loadFromFile("imgs/back_game2.png");
+		_myContainer._mapBackImage.setTexture(_myContainer._mapBack);
+		_myContainer._mapBackImage.setScale(sf::Vector2f(0.7, 0.7));
 
 		// Карта
 		_myContainer._mapSprite.loadFromFile("imgs/map.png");

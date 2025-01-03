@@ -4,8 +4,8 @@
 struct MusicContainer {
 	bool isCreated = false;
 
-	sf::SoundBuffer choiceBuff, clickBuff, exitBuff, aboutBuff;
-	sf::Sound choiceSound, clickSound, exitSound, aboutSound;
+	sf::SoundBuffer choiceBuff, clickBuff, exitBuff, aboutBuff, nitroBuff;
+	sf::Sound choiceSound, clickSound, exitSound, aboutSound, nitroSound;
 	sf::Music music_menu, game_music;
 };
 
